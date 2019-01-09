@@ -1,0 +1,96 @@
+#!/usr/bin/python3
+
+#variables
+var1 = "String1"
+var2 = "String2"
+
+int1 = 1
+int2 = 2
+int3 = 3
+int4 = 4
+
+#can use single or double quotes
+var3 = 'String3'
+var4 = "String4"
+
+#print function - provide value as argument
+print('This is a manually printed string')
+
+#len function returns length
+var1_len = len(var1)
+print(var1_len)
+print(len(var1)) #pass len directly to var1
+
+#methods
+print(var1.upper())
+#uses method to print var1 string as uppercase
+
+#concat strings
+print(var1 + var3)
+
+#repeat
+print('A' * 10)
+
+
+print(var1)
+print(var2)
+print(var3)
+print(var4)
+
+
+#more functions
+#str turns non-strings into strings
+print(str(var2))
+
+#format method
+
+print('I {} stuff.'.format('eat'))
+print('{} {} {}'.format('I', 'like', 'stuff'))
+#by default, it prints format args as 0-3
+
+
+print('This {0} {1}. {0} {1}'.format('a', 'test'))
+
+print('This is going to print {0} '.format(var1, var2))
+
+#providing formatting options to print function
+#you can specify width using {#:width}
+#below makes a arugment print at least 10 characters wide
+#
+
+print('{0:10} | {1:10}'.format('Variable', 'Quantity'))
+print('{0:10} | {1:10}'.format(var1, int1))
+print('{0:10} | {1:10}'.format(var3, int2))
+
+#numbers
+
+#math can be done on the fly
+
+#floats will always be decimal
+
+float1 = 4
+print(float1)
+
+
+print(1 + 1)
+print(2 * 2)
+print(2 ** 16)
+print(16 / 2)
+
+#booleans
+#true or false
+#comparison operators;
+# == equal to
+# > greater than
+# >= or equal to
+# < less than
+# <=
+# != not equal
+
+#boolean operators
+# and
+# or
+# not
+
+print(1 == 2)
+print(1 == 1 or 1 == 2)
