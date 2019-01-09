@@ -1,0 +1,97 @@
+#!/usr/bin/python3
+
+'''
+2018-11-04
+last updated 2019-01-07
+***************
+Script to give a brother some lööps
+todo list:
+    X-figure out how to do ascii chars - DONE, just use the Alt + keycodes
+        --ö - Alt + 0246
+    X-ask for more lööps - DONE, nested if conditional
+    O-error checking for user entering anything other than a number during askForLoops
+	 -move everything into functions
+
+'''
+from time import sleep #import sleep function from module time - add delay to output
+
+#first function, ask for l00ps and print a cat
+def askForLoops():
+    print()
+    sleep(.25)
+    print('Bröther may i have some lööps')
+    sleep(.25)
+    printCatte()
+
+def giveBoops():
+    boopsGiven += 1
+    sleep(.50)
+    print('Righteous bröther but what i really need is lööps')
+    printCatte()
+    return boopsGiven
+	
+def printCatte():
+    sleep(.25)
+    print()
+    print('    ^  ^       ')
+    print('   (O  O)      ')
+    print('  { /  \ }     ')
+    print(' {I      I}    ')
+    print(' {V      V}    ')
+    print('  (||  ||)     ')
+    print('   ^^  ^^      ')
+    print()
+    sleep(.25)
+	
+def receiveLoop():
+    sleep(.25)
+    print()
+    print('Thank you bröther')
+    printCatte()
+    print()
+    sleep(.5)
+    print('Would you care to donate another lööp to the cause')
+    printCatte()
+	
+def mainCode(boopsGiven, catteBeg, loopsGiven):
+    while loopsGiven < 1 or catteBeg == 1: # as long as you dont give a brother some l00ps they're gonna keep asking
+        usrInput = input('1 - Give lööp, 2 - Give bööp: ')
+        try:
+            intusrInput = int(usrInput) # remember input is stored as a string, gotta convert it to compare integers
+        except:
+            print('Gotta use a number bröther')
+
+        if intusrInput == 1:
+            loopsGiven += 1  # increment number of l00ps given by one
+            receiveLoop()
+            usrBeg = input('Y/N: ')
+            if usrBeg == 'Y':
+                catteBeg = 1
+                print()
+            elif usrBeg == 'N':
+                catteBeg = 0
+                print()
+            else:
+                print('Y or N bröther')
+                printCatte()
+                catteBeg = 1
+        elif intusrInput == 2:
+            giveBoops()
+
+        else:  #defaults to else catch-all if something else is entered
+            sleep(.25)
+            print()
+            print('bröther why')
+            printCatte()
+            print()
+    return (boopsGiven, catteBeg, loopsGiven)
+
+boopsGiven = 0 # initialize number of boops to 0
+catteBeg = 1 # catte starts off begging for loops
+loopsGiven = 0 # catte starts off having no lööps, v sad
+
+askForLoops()
+mainCode(boopsGiven, catteBeg, loopsGiven)
+
+print('{} Bööps given'.format(boopsGiven))
+print('{} Lööps given'.format(loopsGiven))
