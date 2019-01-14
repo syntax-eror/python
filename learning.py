@@ -94,3 +94,19 @@ print(16 / 2)
 
 print(1 == 2)
 print(1 == 1 or 1 == 2)
+
+
+# _init_ - this is an initializer, sets up objects with values passed when created
+# example of creating a class and then calling functions of it:
+class bike:
+    def __init__ (self, color, frame_material):
+        self.color = color
+        self.frame_material = frame_material
+        
+    def brake(self):
+        print("Braking!")
+
+red_bike = bike('Red', 'Carbon fiber')
+blue_bike = bike('Blue', 'Steel)
+
+print(red_bike.color) #this will print "Red", it calls color object of bike class
