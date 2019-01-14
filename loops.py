@@ -15,7 +15,7 @@ todo list:
 '''
 from time import sleep #import sleep function from module time - add delay to output
 
-#first function, ask for l00ps and print a cat
+#first function, ask for lööps and print a cat
 def askForLoops():
     print()
     sleep(.25)
