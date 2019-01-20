@@ -107,6 +107,6 @@ class bike:
         print("Braking!")
 
 red_bike = bike('Red', 'Carbon fiber')
-blue_bike = bike('Blue', 'Steel)
+blue_bike = bike('Blue', 'Steel')
 
 print(red_bike.color) #this will print "Red", it calls color object of bike class
