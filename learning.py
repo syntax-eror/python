@@ -111,6 +111,9 @@ dictionary1.pop('Key3') #pops Key3, outputs and removes from dict
 dictionary1.keys()
 dictionary1.values()
 
+#can create dict using lists of tuples
+dictionary2 = dict([('Key1', 'Value1'), ('Key2', 'Value2')])
+
 # _init_ - this is an initializer, sets up objects with values passed when created
 # example of creating a class and then calling functions of it:
 class bike:
