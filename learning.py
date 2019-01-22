@@ -99,6 +99,18 @@ print(1 == 1 or 1 == 2)
 tuple1 = (2, 3)
 
 
+#dictionaries - key/value pairs
+dictionary1 = {'Key1':2, 'Key2':'SecondKey'}
+dictionary1['Key1'] #outputs 2, references value associated with Key1
+#dicts are mutable
+dictionary1['Key3'] = 'Third Key' #adds third key value pair
+#remove keys with del
+del dictionary1['Key3']
+dictionary1.pop('Key3') #pops Key3, outputs and removes from dict
+
+dictionary1.keys()
+dictionary1.values()
+
 # _init_ - this is an initializer, sets up objects with values passed when created
 # example of creating a class and then calling functions of it:
 class bike:
