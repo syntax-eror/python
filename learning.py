@@ -95,6 +95,9 @@ print(16 / 2)
 print(1 == 2)
 print(1 == 1 or 1 == 2)
 
+#tuples - immutable
+tuple1 = (2, 3)
+
 
 # _init_ - this is an initializer, sets up objects with values passed when created
 # example of creating a class and then calling functions of it:
