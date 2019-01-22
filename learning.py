@@ -114,6 +114,11 @@ dictionary1.values()
 #can create dict using lists of tuples
 dictionary2 = dict([('Key1', 'Value1'), ('Key2', 'Value2')])
 
+#conditionals
+1 in [1, 2, 3]
+1 not in [1, 2, 3]
+
+
 # _init_ - this is an initializer, sets up objects with values passed when created
 # example of creating a class and then calling functions of it:
 class bike:
