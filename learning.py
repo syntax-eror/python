@@ -119,6 +119,32 @@ dictionary2 = dict([('Key1', 'Value1'), ('Key2', 'Value2')])
 1 not in [1, 2, 3]
 
 
+#looping
+#while loop
+#while True:
+    #print('loopin')  #infinite loop
+    
+count = 1
+while count <= 4:
+    print('count is currently', count)
+    count += 1
+    
+count = 0
+while count < 10:
+    if count % 2 == 0: #if count modulo 2, if count is divisible by 2
+        count += 1
+        continue #specifies for program to go back to top of while loop, otherwise it will just loop within if
+    #print(f"We're counting odd numbers: {count}") #string interpolation, doesn't seem to work with my verison of python3
+    print("We're counting odd numbers:", count)
+        count += 1
+        
+count = 0
+while count < 10:
+    if count % 2 == 0: #if count modulo 2, if count is divisible by 2
+        break
+    print("Counting odd numbers:", count)
+    count += 1
+    
 # _init_ - this is an initializer, sets up objects with values passed when created
 # example of creating a class and then calling functions of it:
 class bike:
