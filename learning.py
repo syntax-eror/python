@@ -110,6 +110,7 @@ dictionary1.pop('Key3') #pops Key3, outputs and removes from dict
 
 dictionary1.keys()
 dictionary1.values()
+dictionary1.items()
 
 #can create dict using lists of tuples
 dictionary2 = dict([('Key1', 'Value1'), ('Key2', 'Value2')])
