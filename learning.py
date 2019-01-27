@@ -145,6 +145,12 @@ while count < 10:
     print("Counting odd numbers:", count)
     count += 1
     
+#for loops
+list1 = ['item1', 'item2', 'item3', 'item4']
+
+for item in list1: #item is set up as a temporary variable
+    print(item)
+    
 # _init_ - this is an initializer, sets up objects with values passed when created
 # example of creating a class and then calling functions of it:
 class bike:
