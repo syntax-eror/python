@@ -152,6 +152,16 @@ list1 = ['item1', 'item2', 'item3', 'item4']
 for item in list1: #item is set up as a temporary variable
     print(item)
     
+   
+#booleans
+name = ""  #name is empty string which evalutes to False as boolean
+not name  #this will print true since "name" is false
+
+if not name:
+    print("No name given")
+else:
+    print(name)
+    
 # _init_ - this is an initializer, sets up objects with values passed when created
 # example of creating a class and then calling functions of it:
 class bike:
