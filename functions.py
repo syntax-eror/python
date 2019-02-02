@@ -9,3 +9,11 @@ print_name("Name goes here")
 #can also pass in a variable predefined:
 name = "This is a predefined variable name"
 print_name(name)
+
+#functions and returning variables
+
+def add_two_numbers(num):
+    return num + 2
+
+result = add_two_numbers(2) #stores returned value in result variable, but doesn't output
+print(result)
