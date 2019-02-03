@@ -1,4 +1,9 @@
 #!/usr/env/python3
+
+#define functions using the format:
+#def function_name(variable_to_pass_in):
+    #indent code blocks here
+
 def print_name(name):
     print("Name passed to function is", name)
     
