@@ -29,10 +29,10 @@ result = add_two_numbers(2) #stores returned value in result variable, but doesn
 print(result)
 
 def takeargsandreturn(arg1, arg2):
-    print("These are two arguments passed in:", arg1, arg2)
+    print("These are the two arguments that are passed in when function is called:", arg1, arg2)
     newarg = arg1 + arg2
-    print("This is a new argument combined from the two passed in and stored as newarg:", newarg)
-    print("Returning newarg variable to where it was called")
+    print("This is a new argument combined from the two passed in and stored as newarg within local scope of function:", newarg)
+    print("Returning newarg variable", newarg, " to where it was called")
     return newarg
 
 takeargsandreturn(1, 2)
