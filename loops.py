@@ -1,18 +1,15 @@
 #!/usr/bin/python3
 
-'''
-2018-11-04
-last updated 2019-01-07
-***************
-Script to give a brother some lööps
-todo list:
-    X-figure out how to do ascii chars - DONE, just use the Alt + keycodes
-        --ö - Alt + 0246
-    X-ask for more lööps - DONE, nested if conditional
-    O-error checking for user entering anything other than a number during askForLoops
-	 -move everything into functions
+#2018-11-04
+#last updated 2019-01-07
+#Python learning script to give a brother some lööps
+#todo list:
+#X-figure out how to do ascii chars - DONE, just use the Alt + keycodes
+#ö - Alt + 0246
+#X-ask for more lööps - DONE, nested if conditional
+#O-error checking for user entering anything other than a number during askForLoops
+#O-move everything into functions for möre streamlined cöde 
 
-'''
 from time import sleep #import sleep function from module time - add delay to output
 
 #first function, ask for lööps and print a cat
@@ -54,7 +51,7 @@ def receiveLoop():
     printCatte()
 	
 def mainCode(boopsGiven, catteBeg, loopsGiven):
-    while loopsGiven < 1 or catteBeg == 1: # as long as you dont give a brother some l00ps they're gonna keep asking
+    while loopsGiven < 1 or catteBeg == 1: # as long as you dont give a brother some lööps they're gonna keep asking
         usrInput = input('1 - Give lööp, 2 - Give bööp: ')
         try:
             intusrInput = int(usrInput) # remember input is stored as a string, gotta convert it to compare integers
