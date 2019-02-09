@@ -39,3 +39,6 @@ newopnfile.seek(0)
 newopnfile.write("Cigarette Smoking Man\n") #will write to seek position, ovewriting what's already there by number of characters passed in
 newopnfile.seek(0)
 newopnfile.read()
+
+with open('newopnfilebase.txt', 'a') as f: #a for append, with statement will take in object then close it once done
+    f.write("Skinner\n")
