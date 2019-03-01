@@ -25,13 +25,15 @@ def get_arguments():
         parser.error("[-] Please enter the new MAC address, use --help for more information.")
     return options
 
-def troubleshooting(options, arguments): #temp function to try to help me understand what's going on in the program
+#def troubleshooting(options, arguments): #temp function to try to help me understand what's going on in the program
+def troubleshooting(options):
     print("Variable 'options' captured and is the type: ", type(options))
-    print("Variable 'arguments' captured and is the type: ", type(arguments))
+    #print("Variable 'arguments' captured and is the type: ", type(arguments))
     print("Variable 'options' equals:", options)
-    print("Variable 'arguments' equals:", arguments)
+    #print("Variable 'arguments' equals:", arguments)
 
 
-(options, arguments) = get_arguments()
-troubleshooting(options, arguments)
+#(options, arguments) = get_arguments()
+options = get_arguments()
+troubleshooting(options)
 change_mac(options.interface, options.newmac)
