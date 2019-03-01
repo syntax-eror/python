@@ -17,7 +17,13 @@ def get_arguments():
     parser = optparse.OptionParser()
     parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address of")
     parser.add_option("-m", "--mac", dest="newmac", help="MAC address to change to")
-    return parser.parse_args()
+    (options, arguments) = parser.parse_args()
+    if not options.interface: #if no interface is given
+        parser.error("[-] Please enter an interface, use --help for more information.")
+        #parser.error is a function of OptionParser, will show error message you specify then exit
+    elif not options.newmac: #if MAC address is not given
+        parser.error("[-] Please enter the new MAC address, use --help for more information.")
+    return options
 
 def troubleshooting(options, arguments): #temp function to try to help me understand what's going on in the program
     print("Variable 'options' captured and is the type: ", type(options))
