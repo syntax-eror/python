@@ -15,12 +15,16 @@ def change_mac(interface, newmac):
 
 def check_mac(interface):
     #check that MAC address was changed successfully
-    ifconfig_result = subprocess.check_output(["ifconfig", interface])
-    strifconfig_result = str(ifconfig_result) #python 3 returns subprocess.check_output as bytes like object
+    ifconfig_result = str(subprocess.check_output(["ifconfig", interface]))
+    #python 3 returns subprocess.check_output as bytes like object
     #re operators don't work on bytes like objects
-    mac_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", strifconfig_result)
-    print(mac_search_result.group(0)) #re.search will return multiple groups of results if it finds them
+    mac_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
+    #regular expression to return only pattern of MAC address
+    if mac_search_result:
+        print(mac_search_result.group(0)) #re.search will return multiple groups of results if it finds them
     #returning just group 0 only returns the first result, which is all program is interested in
+    else:
+        print("[-] MAC address for interface", interface, "not found.")
 
 def get_arguments():
     parser = optparse.OptionParser()
