@@ -45,8 +45,11 @@ def troubleshooting(options):
     print("Variable 'options' equals:", options)
     #print("Variable 'arguments' equals:", arguments)
 
-
-#(options, arguments) = get_arguments()
 options = get_arguments()
 troubleshooting(options)
 change_mac(options.interface, options.newmac)
+currentmac = check_mac(options.interface)
+if currentmac == options.newmac:
+    print("[+] MAC for interface", options.interface, "was changed successfully.")
+else:
+    print("[-] MAC for interface", options.interface, "was NOT changed, check for errors and try again.")
