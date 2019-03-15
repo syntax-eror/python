@@ -44,8 +44,16 @@ def troubleshooting(options):
     #print("Variable 'arguments' captured and is the type: ", type(arguments))
     print("Variable 'options' equals:", options)
     #print("Variable 'arguments' equals:", arguments)
+    
+
 
 options = get_arguments()
+
+ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
+mac_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ifconfig_result))
+#regex search pattern for MAC address; have to use r followed by " to search for a string
+print(mac_search_result.group(0)) #re.search returns a match group; group 0 is the only one needed to display
+
 troubleshooting(options)
 change_mac(options.interface, options.newmac)
 currentmac = check_mac(options.interface)
