@@ -21,9 +21,9 @@ def check_mac(interface):
     mac_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
     #regular expression to return only pattern of MAC address, see pythex for more regex rules
     if mac_search_result:
-        print(mac_search_result.group(0)) #re.search will return multiple groups of results if it finds them
+        #re.search will return multiple groups of results if it finds them
         #returning group 0 only returns the first result, which is all that is needed
-        return ifconfig_result
+        return mac_search_result.group(0)
     else:
         print("[-] MAC address for interface", interface, "not found.")
 
@@ -46,7 +46,9 @@ def troubleshooting(options):
     #print("Variable 'arguments' equals:", arguments)
 
 options = get_arguments()
-#troubleshooting(options)
+
+oldmac = check_mac(options.interface)
+print("MAC address before changing: ", oldmac)
 
 change_mac(options.interface, options.newmac)
 currentmac = check_mac(options.interface)
