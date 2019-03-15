@@ -19,10 +19,11 @@ def check_mac(interface):
     #python 3 returns subprocess.check_output as bytes like object
     #re operators don't work on bytes like objects so must be converted to str
     mac_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
-    #regular expression to return only pattern of MAC address
+    #regular expression to return only pattern of MAC address, see pythex for more regex rules
     if mac_search_result:
         print(mac_search_result.group(0)) #re.search will return multiple groups of results if it finds them
         #returning group 0 only returns the first result, which is all that is needed
+        return ifconfig_result
     else:
         print("[-] MAC address for interface", interface, "not found.")
 
@@ -38,23 +39,15 @@ def get_arguments():
         parser.error("[-] Please enter the new MAC address, use --help for more information.")
     return options
 
-#def troubleshooting(options, arguments): #temp function to try to help me understand what's going on in the program
 def troubleshooting(options):
     print("Variable 'options' captured and is the type: ", type(options))
     #print("Variable 'arguments' captured and is the type: ", type(arguments))
     print("Variable 'options' equals:", options)
     #print("Variable 'arguments' equals:", arguments)
-    
-
 
 options = get_arguments()
+#troubleshooting(options)
 
-ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
-mac_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ifconfig_result))
-#regex search pattern for MAC address; have to use r followed by " to search for a string
-print(mac_search_result.group(0)) #re.search returns a match group; group 0 is the only one needed to display
-
-troubleshooting(options)
 change_mac(options.interface, options.newmac)
 currentmac = check_mac(options.interface)
 if currentmac == options.newmac:
