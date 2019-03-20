@@ -39,7 +39,9 @@ def scan(ip):
     #print(answered_list.summary())
     
     for element in answered_list: #this for loop breaks the list out into each element
-        print(element)
+        #print(element)
+        print(element[1]) #second part of list is the raw packet info
+        print(element[1].show()) #to show all fields in packet
         print("-----------------------")
     
 scan("10.0.2.1/24")
