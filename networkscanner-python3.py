@@ -45,8 +45,9 @@ def scan(ip):
         #print(element[1]) #second part of list is the raw packet info
         #print(element[1].show()) #to show all fields in packet
         #print("answered list is type: ", type(answered_list))
-        print(element[1].psrc) #print source IP
-        print(element[1].hwsrc) #print source MAC
+        #print(element[1].psrc) #print source IP
+        #print(element[1].hwsrc) #print source MAC
+        print(element[1].prsrc, "\t\t", element[1].hwsrc)
         print("------------------------------")
     
 scan("10.0.2.1/24")
