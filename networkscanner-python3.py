@@ -34,15 +34,20 @@ def scan(ip):
     broadcast = scapy.Ether(dst = "ff:ff:ff:ff:ff")
     arp_request_broadcast = broadcast/arp_request
     #answered_list, unanswered_list = scapy.srp(arp_request_broadcast, timeout = 1)
-    answered_list = scapy.srp(arp_request_broadcast, timeout = 1)[0] #only return element 0 from list;
+    answered_list = scapy.srp(arp_request_broadcast, timeout = 1, verbose = False)[0] #only return element 0 from list;
     #since scapy.srp returns two lists, this lets it know to only return the first element in a 0-indexed list
     #print(answered_list.summary())
     
+    print("IP\t\t\tMAC Address")
+    
     for element in answered_list: #this for loop breaks the list out into each element
         #print(element)
-        print(element[1]) #second part of list is the raw packet info
-        print(element[1].show()) #to show all fields in packet
-        print("-----------------------")
+        #print(element[1]) #second part of list is the raw packet info
+        #print(element[1].show()) #to show all fields in packet
+        #print("answered list is type: ", type(answered_list))
+        print(element[1].psrc) #print source IP
+        print(element[1].hwsrc) #print source MAC
+        print("------------------------------")
     
 scan("10.0.2.1/24")
     
