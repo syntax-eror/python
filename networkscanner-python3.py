@@ -62,5 +62,6 @@ def print_result(results_list):
         print(client["ip"], "\t\t", client["mac"])
     
 #scan("10.0.2.1/24")
-scan_result = scan("10.0.2.1/24")
+iprange = input("Enter IP or range to scan in format x.x.x.x/x: ")
+scan_result = scan(iprange)
 print_result(scan_result)
