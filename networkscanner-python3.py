@@ -39,6 +39,8 @@ def scan(ip):
     #print(answered_list.summary())
     
     print("IP\t\t\tMAC Address")
+    print("============================")
+    clients_list = [] #initialize a list to store the dictionaries of mac/ips
     
     for element in answered_list: #this for loop breaks the list out into each element
         #print(element)
@@ -47,7 +49,9 @@ def scan(ip):
         #print("answered list is type: ", type(answered_list))
         #print(element[1].psrc) #print source IP
         #print(element[1].hwsrc) #print source MAC
-        print(element[1].prsrc, "\t\t", element[1].hwsrc)
+        client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc} #store it in a dict
+        clients_list.append(client_dict)
+        #print(element[1].prsrc, "\t\t", element[1].hwsrc)
         print("------------------------------")
     
 scan("10.0.2.1/24")
