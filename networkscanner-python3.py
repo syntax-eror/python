@@ -38,8 +38,8 @@ def scan(ip):
     #since scapy.srp returns two lists, this lets it know to only return the first element in a 0-indexed list
     #print(answered_list.summary())
     
-    print("IP\t\t\tMAC Address")
-    print("============================")
+    #print("IP\t\t\tMAC Address")
+    #print("============================")
     clients_list = [] #initialize a list to store the dictionaries of mac/ips
     
     for element in answered_list: #this for loop breaks the list out into each element
@@ -52,7 +52,16 @@ def scan(ip):
         client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc} #store it in a dict
         clients_list.append(client_dict)
         #print(element[1].prsrc, "\t\t", element[1].hwsrc)
-        print("------------------------------")
+        #print("------------------------------")
+        #print(clients_list)
+    return clients_list
+
+def print_result(results_list):
+    print("IP\t\t\tMAC Address")
+    print("============================")
+    for client in results_list:
+        print(client)
     
-scan("10.0.2.1/24")
-    
+#scan("10.0.2.1/24")
+scan_result = scan("10.0.2.1/24")
+print_result(scan_result)
