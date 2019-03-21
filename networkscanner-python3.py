@@ -24,8 +24,8 @@ import scapy.all as scapy
     #answered, unanswered = scapy.srp(arp_request_broadcast, timeout = 1) - scapy.srp returns a couple of two lists
     #-this stores them in these two variables
     #-timeout used to exit if no response is received, otherwise it will continue running
-    print(answered.summary()) #summary is a scapy method that will list the info stored in answered variable
-    print(unanswered.summary())
+    #print(answered.summary()) #summary is a scapy method that will list the info stored in answered variable
+    #print(unanswered.summary())
     
 #scan("10.0.2.1")
 
