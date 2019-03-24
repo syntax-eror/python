@@ -168,3 +168,18 @@ red_bike = bike('Red', 'Carbon fiber')
 blue_bike = bike('Blue', 'Steel')
 
 print(red_bike.color) #this will print "Red", it calls color object of bike class
+
+
+
+
+
+# break, continue, and pass are options for loops
+condition1 = 10
+while condition1 > 0:
+    condition1 = condition1 - 1
+    if condition1 == 8:
+        continue
+    elif condition1 == 2:
+        break
+    else:
+        print(condition1)
