@@ -8,7 +8,7 @@ import time
 def forward_packets():
     print("[+] Forwarding packets to target.")
     subprocess.run(["echo", "1", ">", "/proc/sys/net/ipv4/ip_forward"]) #this might work?
-	#subprocess.call(["echo 1 > /proc/sys/net/ipv4/ip_forward"])
+    #subprocess.call(["echo 1 > /proc/sys/net/ipv4/ip_forward"])
 	
 def get_mac(ip):
     arp_request = scapy.ARP(pdst=ip)
