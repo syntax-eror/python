@@ -5,11 +5,6 @@ import subprocess
 import sys
 import time
 
-def forward_packetsx(): # this won't work
-    print("[+] Forwarding packets to target.")
-    subprocess.run(["echo", "1", ">", "/proc/sys/net/ipv4/ip_forward"]) #this might work?
-    #subprocess.call(["echo 1 > /proc/sys/net/ipv4/ip_forward"])
-
 def forward_packets():
     openfile = open('/proc/sys/net/ipv4/ip_forward', 'w')
     openfile.write('1')
