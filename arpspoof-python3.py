@@ -5,10 +5,20 @@ import subprocess
 import sys
 import time
 
-def forward_packets():
+def forward_packetsx(): # this won't work
     print("[+] Forwarding packets to target.")
     subprocess.run(["echo", "1", ">", "/proc/sys/net/ipv4/ip_forward"]) #this might work?
     #subprocess.call(["echo 1 > /proc/sys/net/ipv4/ip_forward"])
+
+def forward_packets():
+    openfile = open('/proc/sys/net/ipv4/ip_forward', 'w')
+    openfile.write('1')
+    openfile.close()
+    
+def forward_packets_restore():
+    openfile = open('/proc/sys/net/ipv4/ip_forward', 'w')
+    openfile.write('0')
+    openfile.close()
 	
 def get_mac(ip):
     arp_request = scapy.ARP(pdst=ip)
