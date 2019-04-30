@@ -6,9 +6,13 @@ import sys
 import time
 
 def forward_packets():
-    openfile = open('/proc/sys/net/ipv4/ip_forward', 'w')
-    openfile.write('1')
-    openfile.close()
+    try:
+        print("[+] IPv4 forwarding enabled")
+        openfile = open('/proc/sys/net/ipv4/ip_forward', 'w')
+        openfile.write('1')
+        openfile.close()
+    except:
+        print("[-] Unable to set up IPv4 forwarding")
     
 def forward_packets_restore():
     openfile = open('/proc/sys/net/ipv4/ip_forward', 'w')
