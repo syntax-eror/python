@@ -65,3 +65,14 @@ def print_result(results_list):
 iprange = input("Enter IP or range to scan in format x.x.x.x/x: ")
 scan_result = scan(iprange)
 print_result(scan_result)
+
+#to have the program take input from the parser, add this:
+#import argparse
+#def get_arguments():
+    #parser = argparse.ArgumentParser()
+    #parser.add_argument("-t", "--target", dest="target", help="Target IP / IP range.")
+    #options = parser.parse_args()
+    #return options
+
+#options = get_arguments()
+#scan_result = scan(options.target)
