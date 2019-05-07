@@ -17,6 +17,7 @@ def process_sniffed_packet(packet):
             for keyword in keywords:
                 if keyword in load:
                     print(load)
+                    break
             #if "usr" or "username" in load:
                 #print(load)
             #print(packet[scapy.Raw].load) #print specific field, in this case user+pwd hopefully
