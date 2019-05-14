@@ -7,7 +7,7 @@ class Bike:
     This class Bike models a bike with engine and tires
     """
     
-    def __init__(self): #methods are functions that are inside classes
+    def __init__(self, engine, tires): #methods are functions that are inside classes
         #__ double under - dunder
         """
         Docstring describing the method
@@ -16,6 +16,12 @@ class Bike:
         self.tires = tires
         #define the data that will make up the class
         #pass - use pass if you do not implement method currently
+        
+#if you run this it will let you create a new object with Bike attribute:
+kawi = Bike('636', ['frontwheel', 'rearwheel'])
+kawi
+kawi.engine
+kawi.tires
     
     
     
