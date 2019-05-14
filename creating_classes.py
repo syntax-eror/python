@@ -17,11 +17,15 @@ class Bike:
         #define the data that will make up the class
         #pass - use pass if you do not implement method currently
         
+    def description(self):
+        print(f"A bike with an {self.engine} engine, and {self.tires} tires")
+        
 #if you run this it will let you create a new object with Bike attribute:
 kawi = Bike('636', ['frontwheel', 'rearwheel'])
-kawi
-kawi.engine
-kawi.tires
+print(kawi)
+print(kawi.engine)
+print(kawi.tires)
+print(kawi.description)
     
     
     
