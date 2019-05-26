@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #MAC Address Changer from Learn Python and Ethical Hacking from Scratch course
-#by Zaid Al-Quraishi
+#by Zaid Al-Quraishi https://zsecurity.org/
 
 import optparse #module for parsing options passed in at command line
 import re #regular expression operator module
