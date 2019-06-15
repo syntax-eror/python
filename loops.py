@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
 #2018-11-04
-#last updated 2019-01-07
+#last updated 2019-06-15
 #Python learning script to give a brother some lööps
 #todo list:
-#X-figure out how to do ascii chars - DONE, just use the Alt + keycodes
-#ö - Alt + 0246
-#X-ask for more lööps - DONE, nested if conditional
-#O-error checking for user entering anything other than a number during askForLoops
-#O-move everything into functions for möre streamlined cöde 
+#    X-figure out how to do ascii chars - DONE, just use the Alt + keycodes
+#        ö - Alt + 0246
+#    X-ask for more lööps - DONE, nested if conditional
+#    O-error checking for user entering anything other than a number during askForLoops
+#    X-move everything into functions for möre streamlined cöde 
 
 from time import sleep #import sleep function from module time - add delay to output
 
@@ -21,11 +21,9 @@ def askForLoops():
     printCatte()
 
 def giveBoops():
-    boopsGiven += 1
     sleep(.50)
     print('Righteous bröther but what i really need is lööps')
     printCatte()
-    return boopsGiven
 	
 def printCatte():
     sleep(.25)
@@ -73,6 +71,7 @@ def mainCode(boopsGiven, catteBeg, loopsGiven):
                 printCatte()
                 catteBeg = 1
         elif intusrInput == 2:
+            boopsGiven += 1
             giveBoops()
 
         else:  #defaults to else catch-all if something else is entered
@@ -81,6 +80,7 @@ def mainCode(boopsGiven, catteBeg, loopsGiven):
             print('bröther why')
             printCatte()
             print()
+        print(boopsGiven, catteBeg, loopsGiven)
     return (boopsGiven, catteBeg, loopsGiven)
 
 boopsGiven = 0 # initialize number of boops to 0
@@ -88,7 +88,7 @@ catteBeg = 1 # catte starts off begging for loops
 loopsGiven = 0 # catte starts off having no lööps, v sad
 
 askForLoops()
-mainCode(boopsGiven, catteBeg, loopsGiven)
+(boopsGiven, catteBeg, loopsGiven) = mainCode(boopsGiven, catteBeg, loopsGiven)
 
 print('{} Bööps given'.format(boopsGiven))
 print('{} Lööps given'.format(loopsGiven))
