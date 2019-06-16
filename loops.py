@@ -49,10 +49,11 @@ def receiveLoop():
     printCatte()
 	
 def mainCode(boopsGiven, catteBeg, loopsGiven):
+    intuserInput = None
     while loopsGiven < 1 or catteBeg == 1: # as long as you dont give a brother some lööps they're gonna keep asking
         usrInput = input('1 - Give lööp, 2 - Give bööp: ')
         try:
-            intusrInput = int(usrInput) # remember input is stored as a string, gotta convert it to compare integers
+            usrInput = int(usrInput) # remember input is stored as a string, gotta convert it to compare integers
         except:
             print('Gotta use a number bröther')
 
@@ -98,6 +99,6 @@ else:
     print ('{} Bööps were received)'.format(boopsGiven))
 
 if loopsGiven == 1:
-    print ('You only hööked a bröther up with one Lööp, do you want him to stārve')
+    print ('You only hööked a bröther up with one Lööp, do you want him to ŝtārve')
 else:
     print ('You gave a bröther {} Lööps, you are a trüe bröther'.format(loopsGiven))
