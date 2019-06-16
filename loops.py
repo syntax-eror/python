@@ -20,7 +20,7 @@ def askForLoops():
     sleep(.25)
     printCatte()
 
-def giveBoops():
+def receiveBoop():
     sleep(.50)
     print('Righteous bröther but what i really need is lööps')
     printCatte()
@@ -59,7 +59,7 @@ def mainCode(boopsGiven, catteBeg, loopsGiven):
         if intusrInput == 1:
             loopsGiven += 1  # increment number of l00ps given by one
             receiveLoop()
-            usrBeg = input('Y/N: ')
+            usrBeg = str.upper(input('Y/N: '))
             if usrBeg == 'Y':
                 catteBeg = 1
                 print()
@@ -72,7 +72,7 @@ def mainCode(boopsGiven, catteBeg, loopsGiven):
                 catteBeg = 1
         elif intusrInput == 2:
             boopsGiven += 1
-            giveBoops()
+            receiveBoop()
 
         else:  #defaults to else catch-all if something else is entered
             sleep(.25)
@@ -90,5 +90,14 @@ loopsGiven = 0 # catte starts off having no lööps, v sad
 askForLoops()
 (boopsGiven, catteBeg, loopsGiven) = mainCode(boopsGiven, catteBeg, loopsGiven)
 
-print('{} Bööps given'.format(boopsGiven))
-print('{} Lööps given'.format(loopsGiven))
+if boopsGiven < 1:
+    print ('You did not bööp a bröther at all, not even once')
+elif boopsGiven == 1:
+    print ('You only gave a bröther one bööp')
+else:
+    print ('{} Bööps were received)'.format(boopsGiven))
+
+if loopsGiven == 1:
+    print ('You only hööked a bröther up with one Lööp, do you want him to stārve')
+else:
+    print ('You gave a bröther {} Lööps, you are a trüe bröther'.format(loopsGiven))
