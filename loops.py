@@ -49,15 +49,15 @@ def receiveLoop():
     printCatte()
 	
 def mainCode(boopsGiven, catteBeg, loopsGiven):
-    intuserInput = None
+    usrInput = None
     while loopsGiven < 1 or catteBeg == 1: # as long as you dont give a brother some lööps they're gonna keep asking
         usrInput = input('1 - Give lööp, 2 - Give bööp: ')
         try:
             usrInput = int(usrInput) # remember input is stored as a string, gotta convert it to compare integers
         except:
-            print('Gotta use a number bröther')
+            print('Gotta use the number 1 or 2 bröther')
 
-        if intusrInput == 1:
+        if usrInput == 1:
             loopsGiven += 1  # increment number of l00ps given by one
             receiveLoop()
             usrBeg = str.upper(input('Y/N: '))
@@ -71,7 +71,7 @@ def mainCode(boopsGiven, catteBeg, loopsGiven):
                 print('Y or N bröther')
                 printCatte()
                 catteBeg = 1
-        elif intusrInput == 2:
+        elif usrInput == 2:
             boopsGiven += 1
             receiveBoop()
 
