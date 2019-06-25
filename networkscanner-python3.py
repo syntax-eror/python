@@ -2,6 +2,40 @@
 
 import scapy.all as scapy
 
+def scan(ip):
+    arp_request = scapy.ARP(pdst = ip)
+    broadcast = scapy.Ether(dst = "ff:ff:ff:ff:ff:ff")
+    arp_request_broadcast = broadcast/arp_request
+    #answered_list, unanswered_list = scapy.srp(arp_request_broadcast, timeout = 1)
+    answered_list = scapy.srp(arp_request_broadcast, timeout = 1, verbose = False)[0] #only return element 0 from list;
+    #since scapy.srp returns two lists, this lets it know to only return the first element in a 0-indexed list
+    #print(answered_list.summary())
+    
+    clients_list = [] #initialize a list to store the dictionaries of mac/ips
+    
+    for element in answered_list: #this for loop breaks the list out into each element
+        #print(element)
+        #print(element[1]) #second part of list is the raw packet info
+        #print(element[1].show()) #to show all fields in packet
+        #print("answered list is type: ", type(answered_list))
+        #print(element[1].psrc) #print source IP
+        #print(element[1].hwsrc) #print source MAC
+        client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc} #store it in a dict
+        clients_list.append(client_dict)
+        #print(element[1].prsrc, "\t\t", element[1].hwsrc)
+        #print("------------------------------")
+        #print(clients_list)
+    return clients_list
+
+def print_result(results_list):
+    print("IP\t\t\tMAC Address\n==========================================")
+    for client in results_list:
+        print(client["ip"], "\t\t", client["mac"])
+
+iprange = input("Enter IP or range to scan in format x.x.x.x/x: ")
+scan_result = scan(iprange)
+print_result(scan_result)
+
 #def scan(ip):
     #arp_request = scapy.ARP(pdst = ip) #pdst is a field that needs to be set to tell where the-
     #ARP packet should be directed
@@ -28,43 +62,6 @@ import scapy.all as scapy
     #print(unanswered.summary())
     
 #scan("10.0.2.1")
-
-def scan(ip):
-    arp_request = scapy.ARP(pdst = ip)
-    broadcast = scapy.Ether(dst = "ff:ff:ff:ff:ff:ff")
-    arp_request_broadcast = broadcast/arp_request
-    #answered_list, unanswered_list = scapy.srp(arp_request_broadcast, timeout = 1)
-    answered_list = scapy.srp(arp_request_broadcast, timeout = 1, verbose = False)[0] #only return element 0 from list;
-    #since scapy.srp returns two lists, this lets it know to only return the first element in a 0-indexed list
-    #print(answered_list.summary())
-    
-    #print("IP\t\t\tMAC Address")
-    #print("============================")
-    clients_list = [] #initialize a list to store the dictionaries of mac/ips
-    
-    for element in answered_list: #this for loop breaks the list out into each element
-        #print(element)
-        #print(element[1]) #second part of list is the raw packet info
-        #print(element[1].show()) #to show all fields in packet
-        #print("answered list is type: ", type(answered_list))
-        #print(element[1].psrc) #print source IP
-        #print(element[1].hwsrc) #print source MAC
-        client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc} #store it in a dict
-        clients_list.append(client_dict)
-        #print(element[1].prsrc, "\t\t", element[1].hwsrc)
-        #print("------------------------------")
-        #print(clients_list)
-    return clients_list
-
-def print_result(results_list):
-    print("IP\t\t\tMAC Address\n======================================")
-    for client in results_list:
-        print(client["ip"], "\t\t", client["mac"])
-    
-#scan("10.0.2.1/24")
-iprange = input("Enter IP or range to scan in format x.x.x.x/x: ")
-scan_result = scan(iprange)
-print_result(scan_result)
 
 #to have the program take input from the parser, add this:
 #import argparse
