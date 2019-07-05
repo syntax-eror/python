@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+#Need to run as python 2 currently, http layer support is different now that scapy_http is deprecated
+
 import scapy.all as scapy
 from scapy_http import http #need scapy_http installed
 #scapy_http is now deprecated, and scapy has native support for HTTP: https://github.com/invernizzi/scapy-http
