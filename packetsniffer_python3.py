@@ -17,6 +17,11 @@ def sniff(interface):
     
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest): #haslayer - scapy method
-        print(packet)
+        #print(packet)
+        print(packet.show()) #shows packet layers that can be accessed
+        #using packet.show, you can see on example website (vulnweb.com) that UI and PW will be sent using
+        #POST with a field (load in the Raw layer) containing username and password
+        if packet.haslayer(scapy.Raw):
+            print(packet)
     
 sniff("eth0")
