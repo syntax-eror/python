@@ -2,7 +2,6 @@
 
 import scapy.all as scapy
 import subprocess
-import sys
 import time
 
 def forward_packets():
@@ -50,10 +49,9 @@ try:
 	    spoof(target_ip, spoof_ip)
 		spoof(spoof_ip, target_ip)
 		sent_packets_count += 2
-		print("\r[+] Packets sent " + str(sent_packets_count)), #comma specifies to NOT print new line;
+		print("\r[+] Packets sent " + str(sent_packets_count),) #with python3 you use end=;
 		#places output into a buffer
-		#\r is a string literal - tells to always print statement from start of line, overwriting last]
-		sys.stdout.flush() #flush buffer, print to screen instantly
+		#\r is a string literal - tells to always print statement from start of line, overwriting last
 		time.sleep(2)
 except KeyboardInterrupt:
     print("\n[+] Stopping ARP spoof, resetting ARP tables")
