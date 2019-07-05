@@ -29,7 +29,8 @@ def restore_arp(dest_ip, source_ip):
     dest_mac = get_mac(dest_ip)
 	source_mac = get_mac(source_ip)
 	packet = scapy.ARP(op=2, pdst=dest_ip, hwdst=dest_mac, psrc=source_ip, hwsrc=source_mac)
-	#print(packet.show()) - show what is in hte packet being sent
+    #if you don't specify source MAC(hwsrc), scapy will automatically send your MAC address
+	#print(packet.show()) - show what is in the packet being sent
 	#print(packet.summary())
 	scapy.send(packet, verbose=False)
 	
