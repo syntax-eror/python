@@ -7,7 +7,9 @@ from scapy_http import http #need scapy_http installed
 
 def sniff(interface):
     scapy.sniff(iface=interface, store=False, prn=process_sniffed_packet, filter="port 21")
+    #prn = pass to a function for each packet
     #, filter=    filters can be tcp, udp, etc. or specify port by doing port 80
+    # http://biot.com/capstats/bpf.html - filters you can use
     
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest): #haslayer - scapy method
