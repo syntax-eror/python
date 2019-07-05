@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 #Need to run as python 2 currently, http layer support is different now that scapy_http is deprecated
+#https://courses.stationx.net/courses/372297/lectures/5700189
+#to find info on other layers, type packet.haslayer (use haslayer method of scapy) and provide the layer name
+#ie packet.haslayer(scapy.Ethernet)
 
 import scapy.all as scapy
 from scapy_http import http #need scapy_http installed
@@ -22,6 +25,6 @@ def process_sniffed_packet(packet):
         #using packet.show, you can see on example website (vulnweb.com) that UI and PW will be sent using
         #POST with a field (load in the Raw layer) containing username and password
         if packet.haslayer(scapy.Raw):
-            print(packet)
+            print(packet[scapy.Raw])
     
 sniff("eth0")
