@@ -2,6 +2,8 @@
 
 import scapy.all as scapy
 from scapy_http import http #need scapy_http installed
+#scapy_http is now deprecated, and scapy has native support for HTTP: https://github.com/invernizzi/scapy-http
+#need to find way to implement
 #pip install scapy_http
 #pip3 install scapy_http
 
