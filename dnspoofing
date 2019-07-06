@@ -1,0 +1,4 @@
+iptables -I FORWARD -j NFQUEUE --queue-num 0
+use iptables to modify the forward queue - store all packets in NFQUEUE
+pip install netfilterqueue
+-apt-get install build-essential python-dev libnetfilter-queue-dev
