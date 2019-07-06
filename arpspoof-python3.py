@@ -60,3 +60,4 @@ except KeyboardInterrupt:
     print("\n[+] Stopping ARP spoof, resetting ARP tables")
 	restore_arp(target_ip, spoof_ip)
 	restore_arp(spoof_ip, target_ip)
+	forward_packets_restore()
