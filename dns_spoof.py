@@ -16,12 +16,17 @@ import subprocess
 
 def set_iptables():
     print("\n[+] Setting up IPTables\n")
-    subprocess.run(["iptables", "-I", "OUTPUT", "-j", "NFQUEUE", "--queue-num", "0"])
-    subprocess.run(["iptables", "-I", "INPUT", "-j", "NFQUEUE", "--queue-num", "0"])
+    #python3 code:
+    #subprocess.run(["iptables", "-I", "OUTPUT", "-j", "NFQUEUE", "--queue-num", "0"])
+    #subprocess.run(["iptables", "-I", "INPUT", "-j", "NFQUEUE", "--queue-num", "0"])
+    #python2 code:
+    subprocess.call(["iptables" + "-I" + "OUTPUT" + "-j" + "NFQUEUE" + "--queue-num" + "0"])
+    subprocess.call(["iptables" + "-I" + "INPUT" + "-j" + "NFQUEUE" + "--queue-num" + "0"])
     
 def restore_iptables():
     print("\n[+] Flushing IPTables\n")
-    subprocess.run(["iptables", "--flush"])
+    #subprocess.run(["iptables", "--flush"])
+    subprocess.call(["iptables" + "--flush"])
 
 def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload()) #store packet as a variable;
