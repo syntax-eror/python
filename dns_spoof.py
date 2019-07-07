@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+#doesn't actually work in python3 currently, errors about str being returned instead of bytes-like object
+
 #iptables -I FORWARD -j NFQUEUE --queue-num 0
 #iptables --flush - delete rules set up
 #iptables -I OUTPUT -j NFQUEUE --queue-num 0
