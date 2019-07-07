@@ -34,6 +34,7 @@ def process_packet(packet):
             scapy_packet[scapy.DNS].ancount = 1 #change answer count to just 1;
             #most websites will have multiple responses for DNS records ie bing.com
             
+            #remove fields from original packet to prevent corrupted packet
             del scapy_packet[scapy.IP].len
             del scapy_packet[scapy.IP].chksum
             del scapy_packet[scapy.UDP].chksum
