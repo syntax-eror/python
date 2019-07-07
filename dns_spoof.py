@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 #doesn't actually work in python3 currently, errors about str being returned instead of bytes-like object
 
@@ -20,8 +20,8 @@ def set_iptables():
     #subprocess.run(["iptables", "-I", "OUTPUT", "-j", "NFQUEUE", "--queue-num", "0"])
     #subprocess.run(["iptables", "-I", "INPUT", "-j", "NFQUEUE", "--queue-num", "0"])
     #python2 code:
-    subprocess.call(["iptables" + "-I" + "OUTPUT" + "-j" + "NFQUEUE" + "--queue-num" + "0"])
-    subprocess.call(["iptables" + "-I" + "INPUT" + "-j" + "NFQUEUE" + "--queue-num" + "0"])
+    subprocess.call(["iptables", "-I", "OUTPUT", "-j", "NFQUEUE", "--queue-num", "0"])
+    subprocess.call(["iptables", "-I", "INPUT", "-j", "NFQUEUE", "--queue-num", "0"])
     
 def restore_iptables():
     print("\n[+] Flushing IPTables\n")
