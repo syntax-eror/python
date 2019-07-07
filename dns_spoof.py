@@ -26,7 +26,7 @@ def set_iptables():
 def restore_iptables():
     print("\n[+] Flushing IPTables\n")
     #subprocess.run(["iptables", "--flush"])
-    subprocess.call(["iptables" + "--flush"])
+    subprocess.call(["iptables", "--flush"])
 
 def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload()) #store packet as a variable;
