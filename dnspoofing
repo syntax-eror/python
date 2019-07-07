@@ -1,4 +1,7 @@
-iptables -I FORWARD -j NFQUEUE --queue-num 0
+iptables -I FORWARD -j NFQUEUE --queue-num 0 - forward chain - other computers
+iptables -I INPUT -j NFQUEUE --queue-num 0 - input chain
+iptables -I OUTPUT -j NFQUEUE --queue-num 0 - output chain
 use iptables to modify the forward queue - store all packets in NFQUEUE
 pip install netfilterqueue
 -apt-get install build-essential python-dev libnetfilter-queue-dev
+
