@@ -41,9 +41,7 @@ def process_packet(packet):
             del scapy_packet[scapy.UDP].len
             #scapy will automatically recalculate these fields when it send them
             
-            packet.set_payload(str(scapy_packet))
-            
-            
+            packet.set_payload(str(scapy_packet)) #convert back to string        
             
         #print(scapy_packet.show())
     #print(packet)
