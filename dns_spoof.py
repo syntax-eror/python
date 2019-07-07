@@ -39,6 +39,8 @@ try:
         #0 - queue number used in iptables
         #process packet is a callback function that will be run on each packet
         queue.run
-
+except KeyboardInterrupt:
+    print("\n[+] Stopping DNS Spoof")
+    restore_iptables()
 #all packets received will be put in the queue that was set up
 #on target computer, connectivity will be interrupted as each packet is being held
