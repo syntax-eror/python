@@ -32,15 +32,19 @@ def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload()) #store packet as a variable;
     #wrapped in scapy layer that lets you access layers of packet using scapy;
     #then able to modify
-    if scapy_packet.haslayer(scapy.Raw):
-        print(scapy_packet.show()) #print out any packet with a RAW layer;
+    if scapy_packet.haslayer(scapy.Raw): #http request is in the Raw layer in scapy
+        if scapy_packet[scapy.TCP].dport == 80: #if this exists, packet is HTTP request outbound
+            print("\nHTTP Request outbound found:\n")
+            print(scapy_packet.show())
+        elif scapy_packet[scapy.TCP].sport = 80: #if this exists, packet is HTTP response inbound
+            print("\nHTTP Response inbound found:\n")
+            print(scapy_packet.show())
+            
+        #print(scapy_packet.show()) #print out any packet with a RAW layer;
         #this will show packets that have HTTP requests, so it can be narrowed
         #down to what fields are being looked for to find file download requests
         #only works for http
-        
-        
-        
-    
+
     packet.accept() #forward packets to target, connectivity seems normal
 
 try:
