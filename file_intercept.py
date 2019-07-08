@@ -36,6 +36,9 @@ def process_packet(packet):
         if scapy_packet[scapy.TCP].dport == 80: #if this exists, packet is HTTP request outbound
             print("\nHTTP Request outbound found:\n")
             print(scapy_packet.show())
+            if ".exe" in scapy_packet[scapy.Raw].load:
+                print("EXE found")
+                print(scapy_packet.show())
         elif scapy_packet[scapy.TCP].sport = 80: #if this exists, packet is HTTP response inbound
             print("\nHTTP Response inbound found:\n")
             print(scapy_packet.show())
