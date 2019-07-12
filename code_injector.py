@@ -40,10 +40,11 @@ def process_packet(packet):
             #HTML is compressed with gzip then sent to client from server
 
     packet.accept() #forward packets to target, connectivity seems normal
+    
+set_iptables()
 
 try:
     while True:
-        set_iptables()
         queue = netfilterqueue.NetfilterQueue()
         queue.bind(0, process_packet)
         queue.run()
