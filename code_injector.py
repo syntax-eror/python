@@ -49,6 +49,9 @@ def process_packet(packet):
             #a string with something else
             #print(scapy_packet.show())
             
+            new_packet = set_load(scapy_packet, modified_load)
+            packet.set_payload(str(new_packet))
+            
             #want to first show the packet contents to see what fields to modify
             #using this you see that the Raw layer contains following:
             #Accept-Encoding: gzip, deflate
