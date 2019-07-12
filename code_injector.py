@@ -3,6 +3,7 @@
 #doesn't actually work in python3 currently, errors about str being returned instead of bytes-like object
 
 import netfilterqueue
+import re
 import scapy.all as scapy
 import subprocess
 
