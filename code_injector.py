@@ -29,6 +29,11 @@ def process_packet(packet):
         if scapy_packet[scapy.TCP].dport == 80:
             print("[+] HTTP Request outbound found")
             print("===================================")
+            modified_load = re.sub("Accept-Encoding:.*?\\r\\n", "", scapy_packet[scapy.Raw].load)
+            new_packet = set_load(scapy_packet, modified_load)
+            packet.set_payload(str(new_packet))
+            #regex to find and replace field that specifies encoding types accepted
+            #replace with "" - empty string
             print(scapy_packet.show())
         elif scapy_packet[scapy.TCP].sport == 80: #if this exists, packet is HTTP response inbound
             print("[+] HTTP Response Inbound found:")
