@@ -26,7 +26,7 @@ def set_load(packet, load):
 def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload())
     if scapy_packet.haslayer(scapy.Raw):
-        load = scapy_packet[scapy.Raw].load)
+        load = scapy_packet[scapy.Raw].load
         if scapy_packet[scapy.TCP].dport == 80:
             print("===================================")
             print("[+] HTTP Request outbound found")
