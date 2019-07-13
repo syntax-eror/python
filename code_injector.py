@@ -51,7 +51,9 @@ def process_packet(packet):
             #first group is a non-capturing group; ?:
             if content_length_search:
                 content_length = content_length_search.group(1) #second element of regex is the number
-                print(content_length)
+                #print(content_length)
+                new_content_length = int(content_length + len(injection_code))
+                print(new_content_length)
                 
             #this wont work on pages that specify Content-Length headers;
             #need to add code that will modify the content length value
