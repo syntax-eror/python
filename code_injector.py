@@ -49,7 +49,8 @@ def process_packet(packet):
             content_length_search = re.search("?:Content-Length:\s)(\d*)", load)
             #separate regex into two groups using () brackets
             #first group is a non-capturing group; ?:
-            if content_length_search:
+            if content_length_search and "text/html" in load: #if content_length_search is returned and;
+                #text/html is in the header of the page
                 content_length = content_length_search.group(1) #second element of regex is the number
                 #print(content_length)
                 new_content_length = int(content_length + len(injection_code))
