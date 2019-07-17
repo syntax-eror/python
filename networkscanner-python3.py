@@ -35,9 +35,12 @@ def print_result(results_list):
     for client in results_list:
         print(client["ip"], "\t\t", client["mac"])
 
-iprange = input("Enter IP or range to scan in format x.x.x.x/x: ")
-scan_result = scan(iprange)
-print_result(scan_result)
+try:
+    iprange = input("Enter IP or range to scan in format x.x.x.x/x: ")
+    scan_result = scan(iprange)
+    print_result(scan_result)
+except:
+    print("Unable to perform network scan, verify IP was entered correctly with subnet /x at the end")
 
 #def scan(ip):
     #arp_request = scapy.ARP(pdst = ip) #pdst is a field that needs to be set to tell where the-
