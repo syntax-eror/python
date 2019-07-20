@@ -31,7 +31,8 @@ def process_packet(packet):
         if scapy_packet[scapy.TCP].dport == 80:
             print("\nHTTP Request outbound found:\n")
             #print(scapy_packet.show())
-            if ".exe" in scapy_packet[scapy.Raw].load:
+            if ".exe" in scapy_packet[scapy.Raw].load and "https://rarlab.com/rar" not in scapy_packet[scapy.Raw].load:
+                #fix possible loop issue where .exe of replacement file is detected by program
                 print("\n****EXE FOUND****\n")
                 ack_list.append(scapy_packet[scapy.TCP].ack)
                 print(scapy_packet.show())
