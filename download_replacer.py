@@ -10,6 +10,7 @@ ack_list = [] #initiliaze outside of function, otherwise it will reinitialize fo
 
 def set_iptables(): #automate setting IPtables for testing on localhost
     print("\n[+] Setting up IPTables\n")
+    #subprocess.call(["iptables", "-I", "FORWARD", "-j", "NFQUEUE", "--queue-num", "0"])
     subprocess.call(["iptables", "-I", "OUTPUT", "-j", "NFQUEUE", "--queue-num", "0"])
     subprocess.call(["iptables", "-I", "INPUT", "-j", "NFQUEUE", "--queue-num", "0"])
     
