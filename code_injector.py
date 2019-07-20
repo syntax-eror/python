@@ -95,7 +95,7 @@ set_iptables()
 try:
     while True:
         queue = netfilterqueue.NetfilterQueue()
-        queue.bind(0, process_packet)
+        queue.bind(0, process_packet) #0 is the queue-num used when setting up IPTables in set_iptables
         queue.run()
 except KeyboardInterrupt:
     print("\n[+] Stopping file download interceptor")
