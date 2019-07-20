@@ -20,6 +20,7 @@ def print_response(scapy_packet):
     print(scapy_packet.show())
 
 def set_iptables(): #automate setting IPtables for testing on localhost
+    restore_iptables()
     print("\n[+] Setting up IPTables\n")
     #subprocess.call(["iptables", "-I", "FORWARD", "-j", "NFQUEUE", "--queue-num", "0"])
     #for setting up FORWARD chain for use on another computer
