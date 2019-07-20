@@ -1,0 +1,7 @@
+iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000
+#edit nat table (-t), append (-A) to the PREROUTING table
+#prerouting - packets received by computer before being routed
+#-p - packet type TCP
+#-dport 80
+#-j redirect to port 10000
+#sslstrip uses 10000 by default
