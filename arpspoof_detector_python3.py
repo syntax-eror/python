@@ -18,12 +18,15 @@ def sniff(interface):
     
 def process_sniffed_packet(packet):
     if packet.haslayer(scapy.ARP) and packet[scapy.ARP].op == 2:
-        real_mac = get_mac(packet[scapy.ARP].psrc)
-        response_mac = packet[scapy.ARP].hwsrc
-        #use packet.show to show which fields you need to get the above responses
-        #psrc is in the ARP layer, etc
-        if real_mac != response_mac:
-            print("!! Possible ARP spoof detected, ARP MAC does not equal what it should!!")
-        print(packet.show())        
-    
+        try:
+            real_mac = get_mac(packet[scapy.ARP].psrc)
+            response_mac = packet[scapy.ARP].hwsrc
+            #use packet.show to show which fields you need to get the above responses
+            #psrc is in the ARP layer, etc
+            if real_mac != response_mac:
+                print("!! Possible ARP spoof detected, ARP MAC does not equal what it should!!")
+            print(packet.show())
+         except IndexError:
+            pass    
+        
 sniff("eth0")
