@@ -26,7 +26,7 @@ def process_sniffed_packet(packet):
             if real_mac != response_mac:
                 print("!! Possible ARP spoof detected, ARP MAC does not equal what it should!!")
             print(packet.show())
-         except IndexError:
+        except IndexError:
             pass    
         
 sniff("eth0")
