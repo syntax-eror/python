@@ -33,7 +33,8 @@ def restore_arp(dest_ip, source_ip):
 	scapy.send(packet, verbose=False)
     #if you don't specify source MAC(hwsrc), scapy will automatically send your MAC address
     #print(packet.show()) - show what is in the packet being sent
-    #print(packet.summary())    
+    #print(packet.summary())
+    #op - 2 = "is-at"
 	
 def spoof(target_ip, spoof_ip):
     target_mac = get_mac(target_ip)
