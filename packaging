@@ -1,3 +1,4 @@
 pip install pyinstaller
 on windows - python.exe -m (for module) pip install pyinstaller
 pyinstaller.exe \pyfile.py --onefile
+pyinstaller.exe \pyfile.py --onefile --noconsole #noconsole to prevent packaged exe from displaying command prompt
