@@ -1,2 +1,3 @@
 pip install pyinstaller
+on windows - python.exe -m (for module) pip install pyinstaller
 pyinstaller.exe \pyfile.py --onefile
