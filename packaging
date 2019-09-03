@@ -1,4 +1,7 @@
 pip install pyinstaller
 on windows - python.exe -m (for module) pip install pyinstaller
-pyinstaller.exe \pyfile.py --onefile
-pyinstaller.exe \pyfile.py --onefile --noconsole #noconsole to prevent packaged exe from displaying command prompt
+pyinstaller.exe --onefile \pyfile.py
+pyinstaller.exe --onefile --noconsole \pyfile.py #noconsole to prevent packaged exe from displaying command prompt
+pyinstaller.exe --add-data "/home/payloadfile.file,." \pyfile.py  #--add-data - decoy file to load with the trojan
+# . - default directory for place to put files when they are executed - . is the default location
+
