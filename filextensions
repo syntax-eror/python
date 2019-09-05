@@ -1,0 +1,8 @@
+Linux - Characters program - Right-to-left override
+-copy righttoleft override char
+-paste after file name extension to swap
+-ie file.exe
+-filefdp.exe
+-copy righttoleft override char after file- part - file fdp.exe
+it will become fileexe.pdf
+browsers will clear the override if downloaded through a browser
