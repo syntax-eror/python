@@ -5,8 +5,8 @@ pyinstaller.exe --onefile \pyfile.py
 pyinstaller.exe --onefile --noconsole \pyfile.py #noconsole to prevent packaged exe from displaying command prompt
 pyinstaller.exe --add-data "/home/payloadfile.file;." \pyfile.py  #--add-data - decoy file to load with the trojan
 # . - default directory for place to put files when they are executed - . is the default location
-nodistribute.com - check file signatures without submitting results
 upx - program for exe compression
+run upx with pyinstaller:
+pyinstaller.exe filename.py --upx-dir=/pathtoupxdir -y --onefile --noconsole
 upx /pathtoexe/exe.exe -o outputname.exe
-iconfinder.com - 
 pyinstaller.exe --icon "/pathtoicon/icon.ico"
