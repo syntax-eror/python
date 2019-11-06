@@ -8,5 +8,8 @@ pyinstaller.exe --add-data "/home/payloadfile.file;." \pyfile.py  #--add-data - 
 upx - program for exe compression
 run upx with pyinstaller:
 pyinstaller.exe filename.py --upx-dir=/pathtoupxdir -y --onefile --noconsole -o outpufilename.exe
+
+run upx as standalone on already compiled exe:
 upx /pathtoexe/exe.exe -o outputname.exe
 pyinstaller.exe --icon "/pathtoicon/icon.ico"
+
