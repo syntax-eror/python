@@ -9,8 +9,8 @@ def convert_to_celcius(ftemp):
 def convert_to_fahrenheit(ctemp):
     return (ctemp * 1.8) + 32
 
-ctemp = int(input("Enter temperature to convert in Celsius: "))
-ftemp = int(input("Enter temperature to convert in Fahrenheit: "))
+ctemp = float(input("Enter temperature to convert in Celsius: "))
+ftemp = float(input("Enter temperature to convert in Fahrenheit: "))
 
 ctof = convert_to_fahrenheit(ctemp)
 ftoc = convert_to_celcius(ftemp)
