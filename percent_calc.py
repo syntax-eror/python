@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#get percentage 1 num (x) is of other num (y)
+#get percentage a num (x) is of other num (y)
 #
 
 def get_percent(y, z):
