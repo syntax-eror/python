@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #simple script to decompress zlib files
-#stolen from Jason Wright SANS instructor sorry Jason
+#stolen from awesome SANS instructor Jason Wright, sorry/thanks Jason!
 
 import sys
 from zlib import *
