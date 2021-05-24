@@ -11,3 +11,4 @@ wb = openpyxl.load_workbook(location) #replace with var
 sheet = wb['Sheet1'] #can call specific sheets in a wb; Sheet1 is the default
 cella1 = sheet['A1']
 print(cella1.value)
+sheet['A1'] = 1 #assign value directly to cell
