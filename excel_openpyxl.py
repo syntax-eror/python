@@ -18,7 +18,7 @@ for i in range(1, 8):
     print(i, sheet.cell(row=i, column=1).value)
     
 for i in range(1, 8):
-    if sheet.cell(row=i, column=1).value == 172.16.39.1:
+    if sheet.cell(row=i, column=1).value == '172.16.39.1':
         sheet.cell(row=i, column=1).value = None
     else:
         print(i, sheet.cell(row=i, column=1).value)
