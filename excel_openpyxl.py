@@ -7,7 +7,7 @@ try:
 except:
     print("Invalid location double check")
 
-wb = openpyxl.load_workbook('/mnt/c/temp/test.xlsx') #replace with var
+wb = openpyxl.load_workbook(location) #replace with var
 sheet = wb['Sheet1'] #can call specific sheets in a wb; Sheet1 is the default
 cella1 = sheet['A1']
 print(cella1.value)
