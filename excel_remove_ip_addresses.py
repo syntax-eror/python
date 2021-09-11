@@ -1,24 +1,39 @@
 #/usr/bin/python3
 
-import openpyxl, os
+#current issues:
+#if sheet has duplicates of multiple IPs, it only removes one
+#range has to be set manually; could a while loop be used instead
+#need to break everything into functions
 
-wb = openpyxl.load_workbook('/mnt/c/temp/test.xlsx')
-sheet = wb['Sheet1']
+import openpyxl #module for working with excel files
 
-for i in range(1, 8):
-    print(i, sheet.cell(row=i, column=1).value)
+wb = openpyxl.load_workbook('/mnt/c/temp/test.xlsx') #load the workbook with IPs to clean up
+sheet = wb['Sheet1'] #set the active sheet; only works with default single sheet for now
+ipremove_list = input("Enter exact path of list of IPs to remove: ") #location of list of IPs that should be removed from sheet
 
-for i in range(1, 8):
-    print(i, sheet.cell(row=i, column=1).value)
-    if sheet.cell(row=i, column=1).value == '10.10.0.3':
-        print("found")
-        sheet.cell(row=i, column=1).value = None
-        print("New value:", sheet.cell(row=i, column=1).value)
+try:
+    with open(ipremove_list) as ipremovelist_file:
+        for line in ipremovelist_file:
+            for i in range(1, 20000):
+                line = line.strip() #built in method to remove whitespace from strings
+                if sheet.cell(row=i, column=1).value == line: #find each instance of IPs to remove starting at row i (1) and going through range
+                    print("Found IP", i)
+                    sheet.delete_rows(i) #delete the rows with the found IP
+except: #generic error catching
+    print("Something does not work")
+
+wb.save('/mnt/c/temp/testupdate3.xlsx') #save result as new excel file
+
+
+#for i in range(1, 8):
+    #print(i, sheet.cell(row=i, column=1).value)
+#    if sheet.cell(row=i, column=1).value == '10.10.0.3':
+        #print("found")
+        #sheet.cell(row=i, column=1).value = None
+        #print("New value:", sheet.cell(row=i, column=1).value)
         sheet.delete_rows(i)
-    else:
-        print("Nothing found")
+#    else:
+        #print("Nothing found")
+#        continue
     #    sheet.cell(row=i, column=1).value = None
     #    print("Found value", sheet.cell(row=i, column=1).value
-    #else:
-    #    print("Nthonig found")
-wb.save('mnt/c/temp/testdelete.xlsx')
