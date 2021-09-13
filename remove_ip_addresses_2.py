@@ -1,7 +1,7 @@
 #/usr/bin/python3
 
 #current issues:
-#if sheet has duplicates of multiple IPs, it only removes one
+#removes rows, which causes rows to shift up one, which can make it miss some
 #range has to be set manually; could a while loop be used instead?
 
 #to do:
