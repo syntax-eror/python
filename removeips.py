@@ -11,6 +11,7 @@ wb = openpyxl.load_workbook(input_workbook)
 
 sheet = wb['Sheet1'] #set the active sheet; only works with default single sheet Sheet1 for now
 ipremove_list = input_ipremovelist
+#ipremove_list = r'C:\path\ipstoremove.txt' #need to use r'path to treat as raw string, \ will cause char encoding error otherwise
 
 try:
     with open(ipremove_list) as ipremovelist_file:
