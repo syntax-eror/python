@@ -5,9 +5,13 @@
 
 import openpyxl #module for working with excel files
 
-input_workbook = input("Enter exact path of Excel file to read: ")
-input_ipremovelist = input("Enter exact path of IP remove list: ")
-wb = openpyxl.load_workbook(input_workbook)
+try:
+    input_workbook = input("Enter exact path of Excel file to read: ")
+    input_ipremovelist = input("Enter exact path of IP remove list: ")
+    wb = openpyxl.load_workbook(input_workbook)
+except:
+    print("Unable to open file, check path and filename and try again")
+    input("Press <ENTER> to exit")
 
 sheet = wb['Sheet1'] #set the active sheet; only works with default single sheet Sheet1 for now
 ipremove_list = input_ipremovelist
@@ -22,6 +26,7 @@ try:
                     sheet.delete_rows(i) #delete the rows with the found IP
 except: #generic error catching
     print("Something does not work")
+    input("Press <ENTER> to exit")
 
 wb.save(r'.\output.xlsx') #save result as new excel file
 print("Output saved to output.xlsx")
