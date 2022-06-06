@@ -12,7 +12,12 @@ def read_workbook():
     return(wb)
 	
 def remove_ips(wb):
-    sheet = wb['Sheet1'] #set the active sheet; only works with default single sheet Sheet1 for now
+    try:
+	sheet = wb['Sheet1'] #set the active sheet; only works with default single sheet Sheet1 for now
+    except:
+	print("Sheet1 not found, check workbook and make sure first sheet is named Sheet1")
+	input("Press <ENTER> to exit")
+	exit()
     try:
         ipremove_list = input("Enter exact path of IP remove list: ")
     except:
