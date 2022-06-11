@@ -12,12 +12,7 @@ def read_workbook():
     return(wb)
 	
 def remove_ips(wb):
-    try:
-	sheet = wb['Sheet1'] #set the active sheet; only works with default single sheet Sheet1 for now
-    except:
-	print("Sheet1 not found, check workbook and make sure first sheet is named Sheet1")
-	input("Press <ENTER> to exit")
-	exit()
+    sheet = wb.active #select last active sheet in workbook, if more than one sheet exists
     try:
         ipremove_list = input("Enter exact path of IP remove list: ")
     except:
@@ -36,7 +31,7 @@ def remove_ips(wb):
 def save_workbook(wb):
     save_location = input("Enter exact path of file to save to: ")
     wb.save(save_location)
-    print("Output saved to output.xlsx")
+    print("Output saved to" save_location)
     input("Press <ENTER> to exit")
 
 wb = read_workbook()
