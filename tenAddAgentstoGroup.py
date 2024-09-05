@@ -1,14 +1,15 @@
 #/usr/bin/env python3
 
-accessKey = ' '
-secretKey = ' '
-
 from tenable.io import TenableIO
 from pprint import pprint
-import re
+import getpass, re
+
+accessKey = getpass.getpass("Enter access key: ")
+secretKey = getpass.getpass("Enter secret key: ")
 
 tio = TenableIO(accessKey, secretKey)
 
+#get gropuIDs from API request or going into Tenable web portal and navigating to Settings > Sensors > Groups and selecting the group. Group ID will be the end of URL
 winWSGroupID = <integerhere>
 winServerGroupID = <integerhere>
 
