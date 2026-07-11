@@ -24,11 +24,13 @@ try:
     cost_of_stock = stock_cost(stock_purchase_price, purchased_number_shares)
     total_current_stock_value = purchased_number_shares * current_stock_price
     net_gain = total_current_stock_value - cost_of_stock
+    rate_of_return = ((total_current_stock_value - cost_of_stock) / cost_of_stock) * 100
     
     print("Number of shares purchased:", purchased_number_shares)
     print("Cost of stock was:", cost_of_stock)
     print("Total current stock value:", total_current_stock_value)
     print("Net gain:", net_gain)
+    print("Rate of return:", rate_of_return)
     
 except:
     print("Enter a valid integer")
